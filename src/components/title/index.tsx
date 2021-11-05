@@ -53,21 +53,22 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => (
         <div
           style={{
             paddingTop: "12px",
-            marginLeft: "0.5rem",
+            marginLeft: "0.3rem",
             display: "block"
           }}
         >
           <h1
             style={{
-              fontWeight: 700,
+              fontWeight: 500,
               textTransform: "capitalize",
               marginBottom: 0,
-              fontSize: "14px"
+              fontSize: "14px",
+              color: "#182127",
             }}
           >
             Ecstasy Creatives
           </h1>
-          <span style={{ color: "grey", fontWeight: 700, fontSize: "14px" }}>for Admins</span>
+          <span style={{ color: "#575757", fontWeight: 400, fontSize: "14px" }}>for Admins</span>
         </div>
       </div>
     )}

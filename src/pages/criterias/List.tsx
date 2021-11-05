@@ -1,8 +1,68 @@
-const List: React.FC = () => {
-    return (
-        <>
-        </>
-    )
-}
+import {
+  List,
+  Table,
+  useTable,
+  Space,
+  ShowButton,
+  EditButton,
+  useMany,
+  TextField,
+} from "@pankod/refine";
 
-export default List;
+import { ICriteria, IHackathon, ITeam } from "interfaces";
+
+const CriteriasList: React.FC = () => {
+  const { tableProps, tableQueryResult } = useTable<ICriteria>();
+
+  const hackethonIds =
+    tableQueryResult.data?.data.map((h) => h.hackathon_id) ?? [];
+
+  const { data: hackathonsData, isLoading: hackathonsIsLoading } =
+    useMany<ICriteria>({
+      resource: "hackathons",
+      ids: hackethonIds,
+      queryOptions: {
+        enabled: hackethonIds.length > 0,
+      },
+    });
+
+  return (
+    <List>
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="name" title="Name" />
+        <Table.Column
+          dataIndex="hackathon_id"
+          title="Hackathon"
+          render={(value) => {
+            if (hackathonsIsLoading) {
+              return <TextField value="Loading..." />;
+            }
+            return (
+              <TextField
+                value={
+                  hackathonsData?.data.find((item) => item.id === value)?.name
+                }
+              />
+            );
+          }}
+        />
+        <Table.Column<ITeam>
+          title="Actions"
+          dataIndex="actions"
+          render={(_text, record): React.ReactNode => {
+            return (
+              <Space>
+                <ShowButton size="small" recordItemId={record.id} hideText />
+                <EditButton size="small" recordItemId={record.id} hideText />
+              </Space>
+            );
+          }}
+        />
+      </Table>
+    </List>
+  );
+};
+
+
+export default CriteriasList;

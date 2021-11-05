@@ -32,8 +32,35 @@ import {
   HackathonerShow,
 } from "pages/hackathoners";
 
+import {
+  ProjectList,
+  ProjectCreate,
+  ProjectEdit,
+  ProjectShow,
+} from "pages/projects";
 
-import { FaLaptopCode, FaUserAlt } from "react-icons/fa";
+import {
+  TeamList,
+  TeamCreate,
+  TeamEdit,
+  TeamShow,
+} from "pages/teams";
+
+import {
+  CriteriasList,
+  CriteriasCreate,
+  CriteriasEdit,
+  CriteriasShow,
+} from "pages/criterias";
+
+
+import { 
+  FaLaptopCode, 
+  FaUserAlt,
+  FaUsers,
+  FaDiceThree,
+  FaChartBar,
+} from "react-icons/fa";
 
 import "styles/antd.less";
 
@@ -67,6 +94,34 @@ const App: React.FC = () => {
         show={HackathonerShow}
         create={HackathonerCreate}
         icon={<FaUserAlt />}
+      />
+
+      <Resource 
+        name="projects"
+        list={ProjectList}
+        edit={ProjectEdit}
+        show={ProjectShow}
+        create={ProjectCreate}
+        icon={<FaDiceThree />}
+      />
+
+      <Resource 
+        name="teams"
+        list={TeamList}
+        edit={TeamEdit}
+        show={TeamShow}
+        create={TeamCreate}
+        icon={<FaUsers />}
+      />
+
+
+      <Resource 
+        name="criterias"
+        list={CriteriasList}
+        edit={CriteriasEdit}
+        show={CriteriasShow}
+        create={CriteriasCreate}
+        icon={<FaChartBar />}
       />
 
 

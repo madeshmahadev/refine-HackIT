@@ -10,22 +10,21 @@ import {
 import { IHackathoner, IProject, IHackathon } from "interfaces";
 
 const ProjectCreate: React.FC = () => {
+  const { formProps, saveButtonProps, queryResult } = useForm<IProject>();
 
-    const { formProps, saveButtonProps, queryResult } = useForm<IProject>();
+  const { selectProps: hackathonSelectProps } = useSelect<IHackathon>({
+    resource: "hackathons",
+    defaultValue: queryResult?.data?.data?.hackathon_id,
+    optionLabel: "name",
+  });
 
-    const { selectProps: hackathonSelectProps } = useSelect<IHackathon>({
-        resource: "hackathons",
-        defaultValue: queryResult?.data?.data?.hackathon_id,
-        optionLabel: "name",
-    });
+  const { selectProps: hackathonerSelectProps } = useSelect<IHackathoner>({
+    resource: "hackathoners",
+    defaultValue: queryResult?.data?.data?.hackathoner_id,
+    optionLabel: "name",
+  });
 
-    const { selectProps: hackathonerSelectProps } = useSelect<IHackathoner>({
-        resource: "hackathoners",
-        defaultValue: queryResult?.data?.data?.hackathoner_id,
-        optionLabel: "name",
-    });
-
-    return (
+  return (
     <Create saveButtonProps={saveButtonProps}>
       <Form {...formProps} layout="vertical">
         <Form.Item label="Name" name="name">
@@ -45,7 +44,7 @@ const ProjectCreate: React.FC = () => {
         </Form.Item>
       </Form>
     </Create>
-    )
-}
+  );
+};
 
 export default ProjectCreate;

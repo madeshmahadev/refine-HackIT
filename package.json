@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.0",
+    "@fontsource/work-sans": "^4.5.1",
     "@pankod/refine": "^1.0.76",
     "@pankod/refine-supabase": "^0.1.0",
     "@testing-library/jest-dom": "^5.12.0",
